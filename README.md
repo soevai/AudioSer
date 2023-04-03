@@ -35,7 +35,7 @@ AudioSer
     <th>AudioSer Web</th>
   </tr>
   <tr>
-    <td><img src="/AudioSer/web.png" alt="AudioSer Web" height="400"></td>
+    <td><img src="/web.png" alt="AudioSer Web" height="400"></td>
   </tr>
 </table>
 
