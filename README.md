@@ -57,7 +57,6 @@ python AudioSer.py
 </table>
 
 
-web界面：
 ```python
 http://127.0.0.1:5620
 ```
