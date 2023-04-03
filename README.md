@@ -33,11 +33,14 @@ AudioSer
 <table style="width:100%">
   <tr>
     <th>AudioSer Web</th>
+    <th>Recognition Test</th>
   </tr>
   <tr>
     <td><img src="/web.png" alt="AudioSer Web" height="400"></td>
+    <td><img src="/test.png" alt="Recognition Test" height="400"></td>
   </tr>
 </table>
+
 
 ### 如何使用
 使用AudioSer，你需要向服务器发送HTTP请求，包含待转换的.wav格式的语音文件和相关参数。
