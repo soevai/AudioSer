@@ -43,7 +43,7 @@ pip install -r requirements.txt
 python AudioSer.py
 ```
 
-以下是调用示例：
+Python调用示例：
 ```python
 import requests
 
