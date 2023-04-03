@@ -45,11 +45,11 @@ pip install -r requirements.txt
 python AudioSer.py
 ```
 
-网页版：
+web界面：
 ```python
 http://127.0.0.1:5620
 ```
-运行后可以访问WEB界面
+运行后可以访问WEB界面进行体验测试。
 
 ### AP调用
 
