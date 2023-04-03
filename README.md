@@ -33,11 +33,9 @@ AudioSer
 <table style="width:100%">
   <tr>
     <th>AudioSer Web</th>
-    <th>Recognition Test</th>
   </tr>
   <tr>
     <td><img src="/web.png" alt="AudioSer Web" height="400"></td>
-    <td><img src="/test.png" alt="Recognition Test" height="400"></td>
   </tr>
 </table>
 
