@@ -51,7 +51,7 @@ python AudioSer.py
 
   </tr>
   <tr>
-    <td><img src="/web.png" alt="VITS at training" height="400"></td>
+    <td><img src="/web.png" alt="AudioSer web" height="400"></td>
 
   </tr>
 </table>
