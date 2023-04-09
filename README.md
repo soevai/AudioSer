@@ -51,7 +51,7 @@ python AudioSer.py
 
   </tr>
   <tr>
-    <td><img src="/web.png" alt="AudioSer web" height="400"></td>
+    <td><img src="./web.png" alt="AudioSer web" height="400"></td>
 
   </tr>
 </table>
@@ -75,17 +75,30 @@ file:1.wav
 ### curl
 
 ```python
-curl -F "file=@E:\Desktop\1.wav" http://127.0.0.1:5620/voice
+curl -F "file=@E:\Desktop\1.wav" http://127.0.0.1:5620/voice # 语音识别
+
+curl -F "file=@E:\Desktop\1.png" http://127.0.0.1:5620/code  # 验证码识别
 ```
 
 ### Python
 
 ```python
+# 语音识别
 import requests
 
 url = 'http://127.0.0.1:5620/voice'
 file = open('E:/Desktop/1.wav', 'rb')
 files = {'file': ('2.wav', file)}
+response = requests.post(url, files=files).json()
+print(response)
+file.close()
+
+# 验证码识别
+import requests
+
+url = 'http://127.0.0.1:5620/code'
+file = open('E:/Desktop/1.png', 'rb')
+files = {'file': ('1.png', file)}
 response = requests.post(url, files=files).json()
 print(response)
 file.close()
@@ -97,14 +110,14 @@ file.close()
 
 ```json
 { 
-    "status": 200, 
-    "message": "helloworld"
+    "message": "helloworld",
+    "status": 200
 } 
 ```
 
 ```json
 { 
-    "status": 200, 
-    "message": "你好世界"
+    "message": "7756",
+    "status": 200
 } 
 ```

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh">
-
+<!-- 
+    @Author > 忆梦 
+    @Date   > 2023/4/5
+-->
 <head>
     <meta charset="utf-8">
     <title>在线语音识别</title>
@@ -12,7 +15,6 @@
 </head>
 
 <body>
-
     <div id="View-center">
         <div class="head-box"></div>
         <div class="view">
@@ -24,13 +26,18 @@
         <p id="result-text"></p>
         <hr>
 
-        <label for="file" class="custom-file-upload">
+        <label for="audio-file" class="custom-file-upload">
             <p3 style="font-weight: bold; font-size: 17px;">上传音频</p3>
         </label>
+        <input type="file" id="audio-file" name="audio-file" accept=".wav" style="display:none;">
+
+        <label for="image-file" class="custom-file-upload">
+            <p3 style="font-weight: bold; font-size: 17px;">上传验证</p3>
+        </label>
+        <input type="file" id="image-file" name="image-file" accept="image/*" style="display:none;">
 
         <a href="../static/src/API.pdf" class="custom-file-upload"
             style="font-weight: bold; font-size: 17px; text-decoration: none;" target="_blank">API文档</a>
-        <input type="file" id="file" name="file" accept=".wav" style="display:none;">
 
         <div id="go-view">
             <pre class="code-Attr"
@@ -57,8 +64,10 @@
             const recordButton = document.querySelector('#record-button');
             const audioPlayer = document.querySelector('#audio-player');
             const resultText = document.querySelector('#result-text');
-            const inputElement = document.getElementById("file");
-            inputElement.addEventListener("change", handleFiles, false);
+            const audioInputElement = document.getElementById("audio-file");
+            const imageInputElement = document.getElementById("image-file");
+            audioInputElement.addEventListener("change", handleAudioFiles, false);
+            imageInputElement.addEventListener("change", handleImageFiles, false);
 
             navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(stream => {
@@ -80,9 +89,9 @@
                             .then(response => response.json())
                             .then(data => {
                                 if (data.message != "") {
-                                    resultText.textContent = "结果：" + data.message;
+                                    resultText.textContent = "识别结果：" + data.message;
                                 } else {
-                                    resultText.textContent = "结果：什么也没听出来."
+                                    resultText.textContent = "识别结果：：什么也没听出来."
                                     console.log("什么也没听出来.");
                                 }
                             })
@@ -110,29 +119,56 @@
                 }
             });
 
-            function handleFiles() {
+            function handleAudioFiles() {
                 const fileList = this.files;
                 if (fileList.length) {
-                    const xhr = new XMLHttpRequest();
                     const formData = new FormData();
                     formData.append("file", fileList[0], fileList[0].name);
-                    xhr.open("POST", "/voice", true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            const result = JSON.parse(xhr.responseText);
-                            if (result['message'] != "") {
-                                resultText.textContent = "结果：" + result['message'];
+                    fetch('/voice', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message != "") {
+                                resultText.textContent = "识别结果：" + data.message;
                             } else {
-                                resultText.textContent = "结果：什么也没听出来."
+                                resultText.textContent = "识别结果：什么也没听出来."
                                 console.log("什么也没听出来.");
                             }
+                        })
+                        .catch(error => {
+                            console.error('上传音频失败：', error);
+                        });
+                }
+            }
 
-                        }
-                    };
-                    xhr.send(formData);
+            function handleImageFiles() {
+                const fileList = this.files;
+                if (fileList.length) {
+                    const formData = new FormData();
+                    formData.append("file", fileList[0], fileList[0].name);
+
+                    fetch('/code', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message != "") {
+                                resultText.textContent = "识别结果：" + data.message;
+                            } else {
+                                resultText.textContent = "识别失败";
+                                console.log("识别失败");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('上传图片失败：', error);
+                        });
                 }
             }
         </script>
+    </div>
 </body>
 
 </html>

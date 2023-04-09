@@ -5,22 +5,33 @@
 }
 
 body {
-  animation: fadeInAnimation ease 1s;
+  opacity: 0;
+  animation: fadeInAnimation ease .8s forwards;
   background-color: rgb(30 30 30);
 }
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 
 .custom-file-upload {
   display: inline-block;
   padding: 8px 20px;
-  font-size: 14px;
-  font-weight: 700;
-  background-color: #2b2b2b;
+  background-color: #0a7626;
   border-radius: 4px;
   transition: all .2s ease-in-out;
   cursor: pointer;
-  color: #787878;
-  margin-left: 5px;
+  color: #e0e0e0;
+  margin-left: 8px;
 }
+
 
 .custom-file-upload:hover {
   background-color: #434242;
@@ -51,6 +62,7 @@ body {
   margin-top: 30px;
   border: solid 5px rgb(99 163 113 / 20%);
   border-radius: 20px;
+  margin: 8px 8px;
 }
 
 #record-button {
@@ -93,6 +105,7 @@ body {
   padding: 20px;
   background-color: rgb(38 38 38);
   border: solid 3px rgb(187 187 187 / 20%);
+  margin: 8px 8px;
 }
 
 .code-Attr {
@@ -121,8 +134,9 @@ p {
 }
 
 hr {
+
   height: 2px;
-  margin: 16px 0;
+  margin: 8px 8px;
   border: 0 none;
   background-color: #262626;
 }
@@ -132,11 +146,15 @@ hr {
 }
 
 #View-center {
+  background: cornsilk;
   max-width: 800px;
   margin: 0 auto;
   padding: 10px;
   padding-bottom: 100px;
   overflow: hidden;
+  margin-top: 40px;
+  background-color: rgb(30 30 30);
+  border-radius: 20px;
 }
 
 button {
